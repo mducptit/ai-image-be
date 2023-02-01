@@ -29,8 +29,7 @@
     "clear:prisma": "rm -rf prisma/migrations",
     "prisma:pull": "npx prisma db pull && npm run generate",
     "prisma:push": "npx prisma db push && npm run generate",
-    "prisma:seed": "npx prisma db seed",
-    "prepare": "husky install"
+    "prisma:seed": "npx prisma db seed"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
