@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  nestjs:
+    container_name: ${APP_NAME}-api
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - prisma
+    env_file:
+      - .env
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    networks:
+      - app-network
+
+  prisma:
+    container_name: ${APP_NAME}-prisma
+    build:
+      context: ./prisma
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    networks:
+      - app-network
+      
+networks:
+  app-network:
+    name: ${APP_NAME}-app-network
+    driver: bridge
+    ipam:
+      driver: default
